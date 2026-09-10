@@ -14,7 +14,9 @@ intervening corpus. A family frame can be nested between company and project.
 GitHub controls fonts and page styling; this Markdown export does not promise
 website CSS capabilities.
 
-Copyright years are explicit configuration, never derived from the system clock.
+The factory accepts only a copyright year or range from trusted project
+configuration. Links and brand content are fixed. There is no options object or
+configuration validation layer. Copyright years are never derived from the system clock.
 Logo artwork remains at its existing canonical URL in `sebastian-brand`; the
 factory does not fetch it during generation. Fonts and logo artwork are not
 redistributed or relicensed by the package.

@@ -31,7 +31,7 @@ import { sebastianTheme } from "sebastian-theme/markdown";
 export default defineConfig({
   source: "README.md.src",
   output: "README.md",
-  themes: [sebastianTheme({ copyrightYears: "2026" })],
+  themes: [sebastianTheme("2026")],
 });
 ```
 

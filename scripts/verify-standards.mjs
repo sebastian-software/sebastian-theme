@@ -57,7 +57,7 @@ async function writeFixture(cwd) {
   );
   await writeFile(
     join(cwd, "markdown-themer.config.mjs"),
-    `import { defineConfig } from ${JSON.stringify(markdownRuntime)};\nimport { sebastianTheme } from ${JSON.stringify(themeRuntime)};\n\nexport default defineConfig({\n  source: "README.md.src",\n  output: "README.md",\n  themes: [sebastianTheme({ copyrightYears: "2026" })],\n});\n`,
+    `import { defineConfig } from ${JSON.stringify(markdownRuntime)};\nimport { sebastianTheme } from ${JSON.stringify(themeRuntime)};\n\nexport default defineConfig({\n  source: "README.md.src",\n  output: "README.md",\n  themes: [sebastianTheme("2026")],\n});\n`,
   );
   await writeFile(
     join(cwd, "package.json"),

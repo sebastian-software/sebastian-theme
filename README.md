@@ -8,83 +8,32 @@
 
 # sebastian-theme
 
-`sebastian-theme` provides the Sebastian Markdown frame for generated project
-READMEs. The shipped Markdown entry point is a small, deterministic factory:
+The Sebastian Software header and footer for project READMEs. One function
+returns the two Markdown fragments; the logo, text, and links belong to the
+brand and are fixed.
 
 ```ts
-import { sebastianTheme } from "sebastian-theme/markdown";
-
-const theme = sebastianTheme({ copyrightYears: "2026" });
-```
-
-The returned frame contributes a centered, compact Sebastian Software logo
-header and a company footer with the configured copyright years. The project
-corpus between those boundaries stays ordinary GitHub-flavored Markdown.
-
-## Scope
-
-The Markdown entry point is designed for repositories whose README is read on
-GitHub and similar Markdown hosts:
-
-- a compact centered logo header using the canonical hosted artwork;
-- the repository's authored Markdown in the middle; and
-- a closing company footer with links and copyright text.
-
-The frame supplies Markdown and HTML fragments. GitHub controls how those
-fragments are rendered, so the theme cannot require arbitrary CSS, custom font
-loading, or a page-wide layout. It uses the host's normal rendering behavior.
-
-The package has no React runtime dependency. A system-font web treatment and a
-Vanilla Extract React component are possible future exports; they are separate
-from this Markdown entry point and are not part of the shipped contract.
-
-## Use with markdown-themer
-
-Keep the authored document in `README.md.src` and generate `README.md` from a
-local config:
-
-```ts
-// markdown-themer.config.ts
 import { defineConfig } from "markdown-themer";
 import { sebastianTheme } from "sebastian-theme/markdown";
 
 export default defineConfig({
-  source: "README.md.src",
-  output: "README.md",
-  themes: [sebastianTheme({ copyrightYears: "2026" })],
+  themes: [sebastianTheme("2026")],
 });
 ```
 
-Run the writer after changing the source, and use check mode in CI:
+The only argument is the copyright year or range, such as `"2020-2026"`, from
+trusted project configuration. It is explicit so generation stays reproducible.
 
-```sh
-pnpm exec markdown-themer --write
-pnpm exec markdown-themer --check
-```
+Keep project content in `README.md.src`. Generate `README.md` with
+`markdown-themer --write` and verify it in CI with `markdown-themer --check`.
+Place a family theme after this theme to nest it inside the company frame.
 
-The theme is a plain opening/closing frame. It does not inspect or transform
-the Markdown corpus.
+This repository uses the theme for its own README. Run `pnpm readme:write`
+after editing its source and `pnpm agent:check` before pushing.
 
-## Installation before npm publication
-
-The package is not published to npm yet. Until publication, pin both packages
-to immutable Git commits in the consuming project's `package.json`:
-
-```json
-{
-  "devDependencies": {
-    "markdown-themer": "git+https://github.com/sebastian-software/markdown-themer.git#<markdown-themer-commit>",
-    "sebastian-theme": "git+https://github.com/sebastian-software/sebastian-theme.git#<sebastian-theme-commit>"
-  }
-}
-```
-
-Replace each placeholder with the reviewed commit for the integration. Both
-repositories commit their built `dist/` files and do not rely on a `prepare`
-lifecycle script, so a Git dependency can be installed without building it in
-the consumer.
-
-See [`docs/usage.md`](docs/usage.md) for the local checkout and CI workflow.
+The package is available through a pinned Git commit until npm publication.
+See [usage](docs/usage.md) and [standards integration](docs/standards-integration.md).
+The code is MIT licensed; [brand ownership](NOTICE.md) remains with Sebastian Software.
 
 ---
 

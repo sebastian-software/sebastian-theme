@@ -101,7 +101,7 @@ try {
   const themeOnlyCheck = join(themeOnlyRoot, "theme-only-check.mjs");
   await writeFile(
     themeOnlyCheck,
-    `import { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame = sebastianTheme({ copyrightYears: "2026" });\nif (!frame.opening.includes("<p align=\\"center\\">") || !frame.closing.includes("Copyright &copy; 2026")) process.exit(1);\n`,
+    `import { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame = sebastianTheme("2026");\nif (!frame.opening.includes("<p align=\\"center\\">") || !frame.closing.includes("Copyright &copy; 2026")) process.exit(1);\n`,
   );
   await run(process.execPath, [themeOnlyCheck], { cwd: themeOnlyRoot, env: npmEnv });
 
@@ -117,7 +117,7 @@ try {
   );
   await writeFile(
     join(consumerRoot, "markdown-themer.config.ts"),
-    `import { defineConfig } from "markdown-themer";\nimport { sebastianTheme } from "sebastian-theme/markdown";\nimport { innerFrame } from "./inner-frame.ts";\n\nexport default defineConfig({\n  source: "README.md.src",\n  output: "README.md",\n  themes: [sebastianTheme({ copyrightYears: "2026" }), innerFrame()],\n});\n`,
+    `import { defineConfig } from "markdown-themer";\nimport { sebastianTheme } from "sebastian-theme/markdown";\nimport { innerFrame } from "./inner-frame.ts";\n\nexport default defineConfig({\n  source: "README.md.src",\n  output: "README.md",\n  themes: [sebastianTheme("2026"), innerFrame()],\n});\n`,
   );
   await writeFile(
     join(consumerRoot, "README.md.src"),
@@ -125,7 +125,7 @@ try {
   );
   await writeFile(
     join(consumerRoot, "consumer-types.ts"),
-    `import { defineConfig, renderMarkdown } from "markdown-themer";\nimport type { Config, MarkdownFrame } from "markdown-themer";\nimport { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame: MarkdownFrame = sebastianTheme({ copyrightYears: "2026" });\nconst config: Config = defineConfig({ themes: [frame] });\nvoid config;\nvoid renderMarkdown("# Types\\n", [frame]);\n`,
+    `import { defineConfig, renderMarkdown } from "markdown-themer";\nimport type { Config, MarkdownFrame } from "markdown-themer";\nimport { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame: MarkdownFrame = sebastianTheme("2026");\nconst config: Config = defineConfig({ themes: [frame] });\nvoid config;\nvoid renderMarkdown("# Types\\n", [frame]);\n`,
   );
   await writeFile(
     join(consumerRoot, "tsconfig.json"),
