@@ -1,0 +1,78 @@
+{
+  "name": "sebastian-theme",
+  "version": "0.1.0",
+  "description": "Sebastian Software publication themes, starting with reusable Markdown framing.",
+  "keywords": [
+    "markdown",
+    "readme",
+    "sebastian-software",
+    "theme"
+  ],
+  "homepage": "https://github.com/sebastian-software/sebastian-theme#readme",
+  "bugs": {
+    "url": "https://github.com/sebastian-software/sebastian-theme/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Sebastian Software GmbH",
+    "url": "https://sebastian-software.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastian-software/sebastian-theme.git"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./markdown": {
+      "types": "./dist/markdown.d.ts",
+      "import": "./dist/markdown.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "oxlint -c oxlint.config.ts && eslint . --max-warnings=0",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "node --test test/*.test.mjs",
+    "verify:package": "node scripts/verify-package.mjs",
+    "standards:check": "standards check",
+    "agent:check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm build && pnpm check:dist && pnpm test && pnpm readme:check && pnpm verify:package && pnpm standards:check && pnpm verify:standards",
+    "prepack": "pnpm build",
+    "check:dist": "git diff --exit-code -- dist",
+    "readme:write": "markdown-themer --write",
+    "readme:check": "markdown-themer --check",
+    "verify:standards": "node scripts/verify-standards.mjs"
+  },
+  "devDependencies": {
+    "@sebastian-software/standards": "0.10.0",
+    "@types/node": "24.12.4",
+    "eslint": "10.4.0",
+    "eslint-config-setup": "0.4.0",
+    "markdown-themer": "github:sebastian-software/markdown-themer#62b47bd12bc34cb0a053a040b126f02f2abcf1a1",
+    "oxfmt": "0.67.0",
+    "oxlint": "1.82.0",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@11.25.0"
+}
