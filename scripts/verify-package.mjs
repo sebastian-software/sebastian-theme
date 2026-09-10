@@ -168,7 +168,7 @@ try {
   );
   const sourcePosition = generated.indexOf("# Packed Sebastian consumer");
   const innerClosePosition = generated.indexOf("</section>");
-  const footerPosition = generated.indexOf("Built by Sebastian Software");
+  const footerPosition = generated.indexOf("Powered by Sebastian Software");
   assert(
     sourcePosition !== -1 &&
       innerClosePosition > sourcePosition &&

@@ -14,7 +14,7 @@ test("wraps project content and an inner theme in the fixed company identity", a
     inner.opening,
     source.trim(),
     inner.closing,
-    "Built by Sebastian Software",
+    "Powered by Sebastian Software",
     "Copyright &copy; 2020-2026 Sebastian Software GmbH",
   ];
   let previous = -1;

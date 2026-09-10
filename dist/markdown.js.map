@@ -1,1 +1,1 @@
-{"version":3,"file":"markdown.js","sourceRoot":"","sources":["../src/markdown.ts"],"names":[],"mappings":"AAAA,+EAA+E;AAC/E,MAAM,UAAU,cAAc,CAAC,cAAsB;IACnD,OAAO;QACL,OAAO,EAAE;;;;KAIR;QACD,OAAO,EAAE;;;;;;;qCAOwB,cAAc,8BAA8B;KAC9E,CAAC;AACJ,CAAC"}
+{"version":3,"file":"markdown.js","sourceRoot":"","sources":["../src/markdown.ts"],"names":[],"mappings":"AAAA,+EAA+E;AAC/E,MAAM,UAAU,cAAc,CAAC,cAAsB;IACnD,OAAO;QACL,OAAO,EAAE;;;;KAIR;QACD,OAAO,EAAE;;;;;;;;qCAQwB,cAAc,8BAA8B;KAC9E,CAAC;AACJ,CAAC"}
