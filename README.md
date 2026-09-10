@@ -6,11 +6,13 @@
   </a>
 </p>
 
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/sebastian-software/sebastian-theme/ci.yml?style=flat)](https://github.com/sebastian-software/sebastian-theme/actions/workflows/ci.yml) [![Node.js >=24](https://img.shields.io/badge/Node.js-%3E%3D24-005164.svg?style=flat)](https://nodejs.org/)
+
 # sebastian-theme
 
 The Sebastian Software header and footer for project READMEs. One function
 returns the two Markdown fragments; the logo, text, and links belong to the
-brand and are fixed.
+brand and are fixed. The footer includes the “Powered by Sebastian Software” badge.
 
 ```ts
 import { defineConfig } from "markdown-themer";
@@ -28,7 +30,12 @@ Keep project content in `README.md.src`. Generate `README.md` with
 `markdown-themer --write` and verify it in CI with `markdown-themer --check`.
 Place a family theme after this theme to nest it inside the company frame.
 
-This repository uses the theme for its own README. Run `pnpm readme:write`
+Project version, CI, and runtime badges come from the separate
+[`projectBadges` helper](https://github.com/sebastian-software/markdown-themer/blob/main/docs/badges.md)
+in `markdown-themer`. They use package metadata and can be placed after this
+brand frame without adding any theme options.
+
+This repository uses the theme and project badges for its own README. Run `pnpm readme:write`
 after editing its source and `pnpm agent:check` before pushing.
 
 The package is available through a pinned Git commit until npm publication.
