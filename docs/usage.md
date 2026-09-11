@@ -11,7 +11,8 @@ themes:
     path: markdown
 ```
 
-The directory contains the committed `header.md` and `footer.md`. mdtheme needs
+Use mdtheme 0.4.0 or newer. The directory contains the committed
+`badges-prepend.md` and `footer.md`. mdtheme needs
 Git access to read them; it does not install this repository's dependencies or
 execute its JavaScript. Follow the
 [mdtheme setup guide](https://github.com/sebastian-software/mdtheme/blob/main/docs/project-tools.md)
@@ -27,12 +28,32 @@ wording and the factory's corresponding text together; the parity test checks
 the default shared frame. Logos and fonts remain owned and hosted by
 sebastian-brand.
 
-The header is a compact Sebastian badge in the document's top badge area. The
+The prepend fragment adds the compact Sebastian badge before project badges. The
 footer carries the smaller company logo, “TypeScript, React & Rust consulting”,
 and “Experts in Agentic Software Development”. Keep company and family
 branding visually subordinate to the project title, introduction, and documentation.
 
+Mark the badge row in `README.md.src` to place the company badge alongside it:
+
+```markdown
+# My project
+
+<!-- mdtheme:badges:start -->
+
+[![Build](https://example.com/build.svg)](https://example.com/build)
+<!-- mdtheme:badges:end -->
+```
+
+Without a slot, mdtheme places generated badges before the source. Use an empty
+slot if metadata supplies all project badges. Keep Markdown badge rows outside
+raw HTML blocks. Remove any manually copied Sebastian badge to avoid duplication.
+Upgrade the project CLI pin and lockfile before adopting this theme revision.
+Older CLI versions should stay on the previous theme commit.
+
 ## Existing JavaScript factory consumers
+
+The legacy factory retains its header badge because its renderer has no badge
+slot support. Native placement changes do not alter that API.
 
 Install both packages from immutable Git commits while they are unpublished:
 

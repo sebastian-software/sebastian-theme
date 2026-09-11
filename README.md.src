@@ -16,7 +16,10 @@ themes:
     path: markdown
 ```
 
-The `markdown/` directory contains `header.md` and `footer.md`. mdtheme reads
+To place the company badge next to your own badges, add a
+[badge slot](docs/usage.md#use-with-native-mdtheme) to `README.md.src`.
+
+The `markdown/` directory contains `badges-prepend.md` and `footer.md`. mdtheme 0.4.0+ reads
 these files directly; the consumer does not install or execute a theme package.
 Git must be installed and able to access this repository.
 

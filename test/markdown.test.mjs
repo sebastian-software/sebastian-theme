@@ -31,9 +31,9 @@ test("wraps project content and an inner theme in the fixed company identity", a
   assert.equal(await renderMarkdown(source, [sebastianTheme("2020-2026"), inner]), result);
 });
 
-test("native Git theme matches the existing company frame", async () => {
+test("native badge and footer retain the legacy factory content", async () => {
   const frame = sebastianTheme("2026");
-  const header = await readFile(new URL("../markdown/header.md", import.meta.url), "utf8");
+  const header = await readFile(new URL("../markdown/badges-prepend.md", import.meta.url), "utf8");
   const footer = await readFile(new URL("../markdown/footer.md", import.meta.url), "utf8");
   assert.equal(header.trimEnd(), frame.opening);
   assert.equal(footer.trimEnd(), frame.closing);
@@ -43,7 +43,7 @@ test("native Git theme retains LF when automatic CRLF conversion is enabled", as
   const directory = await mkdtemp(join(tmpdir(), "sebastian-theme-eol-"));
   try {
     await mkdir(join(directory, "markdown"));
-    for (const file of [".gitattributes", "markdown/header.md", "markdown/footer.md"]) {
+    for (const file of [".gitattributes", "markdown/badges-prepend.md", "markdown/footer.md"]) {
       await copyFile(new URL(`../${file}`, import.meta.url), join(directory, file));
     }
     const git = (...args) =>
@@ -52,7 +52,7 @@ test("native Git theme retains LF when automatic CRLF conversion is enabled", as
     git("add", ".");
     await rm(join(directory, "markdown"), { recursive: true });
     git("checkout-index", "--all");
-    for (const file of ["header.md", "footer.md"]) {
+    for (const file of ["badges-prepend.md", "footer.md"]) {
       const checkedOut = await readFile(join(directory, "markdown", file), "utf8");
       assert.ok(checkedOut.includes("\n"));
       assert.ok(!checkedOut.includes("\r"), `${file} must use LF line endings`);
