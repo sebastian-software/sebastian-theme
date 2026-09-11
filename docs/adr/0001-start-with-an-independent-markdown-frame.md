@@ -5,7 +5,7 @@ Updated: 2026-09-11
 
 ## Decision
 
-Native mdtheme consumers read `markdown/header.md` and `markdown/footer.md`
+Native mdtheme consumers read `markdown/badges-prepend.md` and `markdown/footer.md`
 directly from Git. This is the primary documented interface. The directory is
 committed and included in package archives. It contains only Markdown/HTML;
 consumer generation does not execute code or install theme dependencies.
@@ -68,3 +68,10 @@ the public API and its composition with the actual Markdown tool.
 The repository generates its own README from `README.md.src`. Standards has an
 explicit ownership opt-in and continues to govern all its other files. The
 README generation and standards checks both run in CI.
+
+Native consumers require mdtheme 0.4.0 or newer. Put company attribution in
+`badges-prepend.md`, allowing project badge slots to place it beside their own
+badges. The footer and Ferramenta composition stay unchanged. Upgrade CLI pins
+before theme pins; earlier releases do not understand badge fragments. Keep the
+legacy JavaScript factory badge in `opening`, since its renderer cannot compose
+badge slots. Test content parity across the two placement contracts.

@@ -98,7 +98,7 @@ try {
     !existsSync(join(themeOnlyRoot, "node_modules/react")),
     "theme-only install unexpectedly included React",
   );
-  for (const filename of ["header.md", "footer.md"]) {
+  for (const filename of ["badges-prepend.md", "footer.md"]) {
     const installed = await readFile(
       join(themeOnlyRoot, "node_modules/sebastian-theme/markdown", filename),
     );
