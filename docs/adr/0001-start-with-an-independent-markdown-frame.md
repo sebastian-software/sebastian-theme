@@ -24,11 +24,27 @@ of the JavaScript interface is a separate compatibility decision.
 strings. It depends on no renderer or browser runtime. `markdown-themer` uses
 that structural frame as its outermost theme; other renderers may use it too.
 
-The opening contains one compact, linked Sebastian Software logo. The closing
-contains company links and the legal copyright notice. The project authors the
-intervening corpus. A family frame can be nested between company and project.
-GitHub controls fonts and page styling; this Markdown export does not promise
-website CSS capabilities.
+The project authors the document corpus. A family frame can be nested between
+company and project. GitHub controls fonts and page styling; this Markdown
+export does not promise website CSS capabilities.
+
+## Brand hierarchy and approved footer copy
+
+Themes support the project content. Their visual weight and language must not
+overshadow the project title, introduction, or documentation. This principle
+also applies when a Ferramenta family frame is nested inside the company frame.
+Use compact branding and restrained headings; keep the project in the foreground.
+
+The approved arrangement places the Sebastian badge alongside the project's
+other badges and moves the Sebastian Software logo to the footer. The footer
+retains company links and the explicit copyright notice, with these service lines:
+
+> TypeScript, React & Rust consulting
+> Experts in Agentic Software Development
+
+“Experts in Agentic Software Development” is the approved wording. It expresses
+expertise in setting up and operating AI-driven development workflows. Do not
+substitute “AI-assisted” or a market-leadership claim such as “Leaders in”.
 
 The factory accepts only a copyright year or range from trusted project
 configuration. Links and brand content are fixed. There is no options object or

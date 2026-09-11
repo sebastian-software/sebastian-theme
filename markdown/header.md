@@ -1,5 +1,1 @@
-<p align="center">
-  <a href="https://oss.sebastian-software.com">
-    <img src="https://sebastian-brand.vercel.app/sebastian-software/logo-software.svg" alt="Sebastian Software" width="240" />
-  </a>
-</p>
+[![Powered by Sebastian Software](https://img.shields.io/badge/Powered_by-Sebastian_Software-005164?style=flat)](https://oss.sebastian-software.com)

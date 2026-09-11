@@ -27,6 +27,11 @@ wording and the factory's corresponding text together; the parity test checks
 the default shared frame. Logos and fonts remain owned and hosted by
 sebastian-brand.
 
+The header is a compact Sebastian badge in the document's top badge area. The
+footer carries the smaller company logo, “TypeScript, React & Rust consulting”,
+and “Experts in Agentic Software Development”. Keep company and family
+branding visually subordinate to the project title, introduction, and documentation.
+
 ## Existing JavaScript factory consumers
 
 Install both packages from immutable Git commits while they are unpublished:

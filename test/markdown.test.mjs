@@ -14,11 +14,12 @@ test("wraps project content and an inner theme in the fixed company identity", a
   const source = "# Project\n\n[Guide](docs/guide.md)\n";
   const result = await renderMarkdown(source, [frame, inner]);
   const sections = [
-    "logo-software.svg",
+    "Powered by Sebastian Software",
     inner.opening,
     source.trim(),
     inner.closing,
-    "Powered by Sebastian Software",
+    "logo-software.svg",
+    "Experts in Agentic Software Development",
     "Copyright &copy; 2020-2026 Sebastian Software GmbH",
   ];
   let previous = -1;
