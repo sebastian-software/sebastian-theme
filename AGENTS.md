@@ -1,8 +1,10 @@
 # Sebastian Theme
 
 Reusable Sebastian Software presentation components. The first release exports
-Markdown frames through `sebastian-theme/markdown`; future React exports are
-independent of this Node-safe entry.
+data-only Markdown frames from `markdown/header.md` and `markdown/footer.md`
+for native mdtheme Git consumers. The existing `sebastian-theme/markdown`
+factory remains supported; future React exports are independent. Keep the
+committed Markdown and factory content aligned.
 
 Use Node 24+, pnpm, TypeScript ESM, and US English. Run `pnpm agent:check` before
 pushing. Edit README.md.src and regenerate README.md with `pnpm readme:write`.

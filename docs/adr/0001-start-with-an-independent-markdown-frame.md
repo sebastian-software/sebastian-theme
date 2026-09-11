@@ -1,8 +1,22 @@
 # Start with an independent Markdown frame
 
 Status: accepted
+Updated: 2026-09-11
 
 ## Decision
+
+Native mdtheme consumers read `markdown/header.md` and `markdown/footer.md`
+directly from Git. This is the primary documented interface. The directory is
+committed and included in package archives. It contains only Markdown/HTML;
+consumer generation does not execute code or install theme dependencies.
+
+Git consumers may follow `main` or choose a tag or commit. The choice belongs
+to each project and is independent of its mdtheme CLI version. The shared
+copyright notice is authored explicitly in the footer and changes by review.
+
+The existing factory API remains available for its current consumers. Tests
+keep the native frame's shared content aligned with that API. A full removal
+of the JavaScript interface is a separate compatibility decision.
 
 `sebastian-theme/markdown` exports a pure factory returning opening and closing
 strings. It depends on no renderer or browser runtime. `markdown-themer` uses
@@ -27,7 +41,8 @@ configuration to match website composition.
 
 ## Distribution and dogfooding
 
-Until registry publication, consumers pin immutable Git commits. The repository
+Existing package consumers pin immutable Git commits until registry publication.
+Native Markdown consumers may also follow a branch. The repository
 commits compiled `dist/`, advertises its compiled `main`, and checks for stale
 build output in CI. It has no `prepare` lifecycle. A packed consumer verifies
 the public API and its composition with the actual Markdown tool.

@@ -1,10 +1,33 @@
 # Usage
 
-`sebastian-theme/markdown` exports the Markdown frame factory. It is intended
-for a `markdown-themer` config that generates one committed README from an
-authored source file.
+## Use with native mdtheme
 
-## Configure a repository
+Add this data-only theme to your project's `mdtheme.yaml`:
+
+```yaml
+themes:
+  - git: https://github.com/sebastian-software/sebastian-theme.git
+    ref: main
+    path: markdown
+```
+
+The directory contains the committed `header.md` and `footer.md`. mdtheme needs
+Git access to read them; it does not install this repository's dependencies or
+execute its JavaScript. Follow the
+[mdtheme setup guide](https://github.com/sebastian-software/mdtheme/blob/main/docs/project-tools.md)
+for project-pinned installation and README tasks.
+
+`main` follows current branding. Use a tag or full commit hash for a fixed frame.
+mdtheme refreshes the selected Git revision on every invocation. Place another
+theme after the company theme to nest its content inside the company frame.
+
+The native frame uses the explicit copyright notice committed in `footer.md`.
+It has no per-project interpolation or executable configuration. Update shared
+wording and the factory's corresponding text together; the parity test checks
+the default shared frame. Logos and fonts remain owned and hosted by
+sebastian-brand.
+
+## Existing JavaScript factory consumers
 
 Install both packages from immutable Git commits while they are unpublished:
 
