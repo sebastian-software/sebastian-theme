@@ -9,6 +9,8 @@ Native mdtheme consumers read `markdown/header.md` and `markdown/footer.md`
 directly from Git. This is the primary documented interface. The directory is
 committed and included in package archives. It contains only Markdown/HTML;
 consumer generation does not execute code or install theme dependencies.
+Git attributes enforce LF line endings for these files, including Windows
+checkouts with `core.autocrlf=true`, so generated documents match across platforms.
 
 Git consumers may follow `main` or choose a tag or commit. The choice belongs
 to each project and is independent of its mdtheme CLI version. The shared
