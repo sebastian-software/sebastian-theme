@@ -1,33 +1,48 @@
 # sebastian-theme
 
-The Sebastian Software header and footer for project READMEs. One function
-returns the two Markdown fragments; the logo, text, and links belong to the
-brand and are fixed. The footer includes the “Powered by Sebastian Software” badge.
+Shared Sebastian Software branding for project READMEs: a linked company logo,
+support and company links, and the “Powered by Sebastian Software” footer.
+Keep the frame in this repository and your project documentation in your own.
 
-```ts
-import { defineConfig } from "markdown-themer";
-import { sebastianTheme } from "sebastian-theme/markdown";
+## Add the theme to your project
 
-export default defineConfig({
-  themes: [sebastianTheme("2026")],
-});
+[Set up mdtheme](https://github.com/sebastian-software/mdtheme#add-mdtheme-to-your-project),
+then create `mdtheme.yaml` in your project root:
+
+```yaml
+themes:
+  - git: https://github.com/sebastian-software/sebastian-theme.git
+    ref: main
+    path: markdown
 ```
 
-The only argument is the copyright year or range, such as `"2020-2026"`, from
-trusted project configuration. It is explicit so generation stays reproducible.
+The `markdown/` directory contains `header.md` and `footer.md`. mdtheme reads
+these files directly; the consumer does not install or execute a theme package.
+Git must be installed and able to access this repository.
 
-Keep project content in `README.md.src`. Generate `README.md` with
-`markdown-themer --write` and verify it in CI with `markdown-themer --check`.
-Place a family theme after this theme to nest it inside the company frame.
+With the mdtheme project tasks configured, generate and check your README:
 
-Project version, CI, and runtime badges come from the separate
-[`projectBadges` helper](https://github.com/sebastian-software/markdown-themer/blob/main/docs/badges.md)
-in `markdown-themer`. They use package metadata and can be placed after this
-brand frame without adding any theme options.
+```sh
+mise run readme:write
+mise run readme:check
+```
 
-This repository uses the theme and project badges for its own README. Run `pnpm readme:write`
-after editing its source and `pnpm agent:check` before pushing.
+Commit the configuration and generated README with your authored `README.md.src`.
+Following `main` picks up branding changes each time you generate. Use a tag or
+commit in `ref` to keep the theme fixed independently of your CLI version.
 
-The package is available through a pinned Git commit until npm publication.
-See [usage](docs/usage.md) and [standards integration](docs/standards-integration.md).
-The code is MIT licensed; [brand ownership](NOTICE.md) remains with Sebastian Software.
+The shared footer has an explicit copyright year. It changes only through a
+reviewed edit, never from the clock or the consuming project's metadata.
+For project badges, add `badges: { enabled: true }` to your mdtheme configuration.
+See [usage](docs/usage.md) for additional themes and the existing factory API.
+
+## Maintaining the theme
+
+Keep the Markdown files and existing factory output aligned; tests check their
+shared content. Run `pnpm readme:write` after changing this README's source and
+`pnpm agent:check` before pushing. The repository currently generates its own
+README with the earlier renderer while preserving that interface for existing
+consumers. This does not affect native Git-theme consumption.
+
+Brand assets remain hosted by sebastian-brand. The code is MIT licensed;
+[brand ownership](NOTICE.md) remains with Sebastian Software.

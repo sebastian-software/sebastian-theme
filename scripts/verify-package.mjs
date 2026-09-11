@@ -98,6 +98,13 @@ try {
     !existsSync(join(themeOnlyRoot, "node_modules/react")),
     "theme-only install unexpectedly included React",
   );
+  for (const filename of ["header.md", "footer.md"]) {
+    const installed = await readFile(
+      join(themeOnlyRoot, "node_modules/sebastian-theme/markdown", filename),
+    );
+    const source = await readFile(join(packageRoot, "markdown", filename));
+    assert(installed.equals(source), `Native theme file differs in packed package: ${filename}`);
+  }
   const themeOnlyCheck = join(themeOnlyRoot, "theme-only-check.mjs");
   await writeFile(
     themeOnlyCheck,

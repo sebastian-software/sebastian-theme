@@ -23,6 +23,7 @@
   },
   "files": [
     "dist",
+    "markdown",
     "docs",
     "README.md",
     "LICENSE",
