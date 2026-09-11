@@ -1,0 +1,2 @@
+# Keep the native theme identical in every Git checkout.
+/markdown/*.md text eol=lf
