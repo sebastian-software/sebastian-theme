@@ -108,7 +108,7 @@ try {
   const themeOnlyCheck = join(themeOnlyRoot, "theme-only-check.mjs");
   await writeFile(
     themeOnlyCheck,
-    `import { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame = sebastianTheme("2026");\nif (!frame.opening.includes("<p align=\\"center\\">") || !frame.closing.includes("Copyright &copy; 2026")) process.exit(1);\n`,
+    `import { sebastianTheme } from "sebastian-theme/markdown";\n\nconst frame = sebastianTheme("2026");\nif (!frame.opening.includes("Powered by Sebastian Software") || !frame.closing.includes("Copyright &copy; 2026")) process.exit(1);\n`,
   );
   await run(process.execPath, [themeOnlyCheck], { cwd: themeOnlyRoot, env: npmEnv });
 
@@ -164,7 +164,7 @@ try {
   const sourceBefore = await readFile(source);
   await run(cli, ["--write"], { cwd: consumerRoot, env: npmEnv });
   const generated = await readFile(output, "utf8");
-  assert(generated.includes("logo-software.svg"), "CLI did not render the Sebastian logo header");
+  assert(generated.includes("logo-software.svg"), "CLI did not render the Sebastian footer logo");
   assert(
     generated.includes("Copyright &copy; 2026 Sebastian Software GmbH"),
     "CLI did not render the theme footer",
@@ -175,7 +175,7 @@ try {
   );
   const sourcePosition = generated.indexOf("# Packed Sebastian consumer");
   const innerClosePosition = generated.indexOf("</section>");
-  const footerPosition = generated.indexOf("Powered by Sebastian Software");
+  const footerPosition = generated.indexOf("logo-software.svg");
   assert(
     sourcePosition !== -1 &&
       innerClosePosition > sourcePosition &&

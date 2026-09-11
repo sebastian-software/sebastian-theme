@@ -1,7 +1,7 @@
 # sebastian-theme
 
-Shared Sebastian Software branding for project READMEs: a linked company logo,
-support and company links, and the “Powered by Sebastian Software” footer.
+Shared Sebastian Software branding for project READMEs: a compact badge above the content and a small company logo, service lines,
+and links in the footer. The project stays in the foreground.
 Keep the frame in this repository and your project documentation in your own.
 
 ## Add the theme to your project
