@@ -21,8 +21,8 @@ importers:
         specifier: 0.4.0
         version: 0.4.0(@types/estree@1.0.9)(@typescript-eslint/eslint-plugin@8.70.0(@typescript-eslint/parser@8.70.0(eslint@10.4.0(jiti@2.7.0)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))(eslint@10.4.0(jiti@2.7.0)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))(@typescript-eslint/utils@8.70.0(eslint@10.4.0(jiti@2.7.0)(supports-color@9.4.0))(supports-color@9.4.0)(typescript@6.0.3))(eslint@10.4.0(jiti@2.7.0)(supports-color@9.4.0))(jsonc-eslint-parser@3.3.0)(oxlint@1.82.0)(supports-color@9.4.0)(typescript@6.0.3)
       markdown-themer:
-        specifier: github:sebastian-software/markdown-themer#cf851a81a5dfb239847841bfff5b24bcc26c0264
-        version: https://codeload.github.com/sebastian-software/markdown-themer/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264
+        specifier: github:sebastian-software/mdtheme#cf851a81a5dfb239847841bfff5b24bcc26c0264
+        version: https://codeload.github.com/sebastian-software/mdtheme/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264
       oxfmt:
         specifier: 0.67.0
         version: 0.67.0
@@ -2157,8 +2157,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  markdown-themer@https://codeload.github.com/sebastian-software/markdown-themer/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264:
-    resolution: {gitHosted: true, integrity: sha512-RU7M5ExNokQ7rtRRe0WvgILHnyxtRdvNgfAtfHBc9wVK817hVfzTkQtlqXafPRK+LMInoH5HO18wswJg0UqRLg==, tarball: https://codeload.github.com/sebastian-software/markdown-themer/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264}
+  markdown-themer@https://codeload.github.com/sebastian-software/mdtheme/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264:
+    resolution: {gitHosted: true, integrity: sha512-iSxxYjsPRGi7lB4gPO1l2zqILvMtsSw7Ms8Genx4iBlcAj4LyflRQtpJoU0i6Xvw2k3R+x6OiNt6qD+afaPUTQ==, tarball: https://codeload.github.com/sebastian-software/mdtheme/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264}
     version: 0.1.0
     engines: {node: '>=24'}
     hasBin: true
@@ -5256,7 +5256,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  markdown-themer@https://codeload.github.com/sebastian-software/markdown-themer/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264:
+  markdown-themer@https://codeload.github.com/sebastian-software/mdtheme/tar.gz/cf851a81a5dfb239847841bfff5b24bcc26c0264:
     dependencies:
       jiti: 2.7.0
       prettier: 3.9.6

@@ -67,7 +67,7 @@
     "@types/node": "24.12.4",
     "eslint": "10.4.0",
     "eslint-config-setup": "0.4.0",
-    "markdown-themer": "github:sebastian-software/markdown-themer#cf851a81a5dfb239847841bfff5b24bcc26c0264",
+    "markdown-themer": "github:sebastian-software/mdtheme#cf851a81a5dfb239847841bfff5b24bcc26c0264",
     "oxfmt": "0.67.0",
     "oxlint": "1.82.0",
     "typescript": "6.0.3"

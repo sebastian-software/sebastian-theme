@@ -60,7 +60,7 @@ Install both packages from immutable Git commits while they are unpublished:
 ```json
 {
   "devDependencies": {
-    "markdown-themer": "git+https://github.com/sebastian-software/markdown-themer.git#<markdown-themer-commit>",
+    "markdown-themer": "git+https://github.com/sebastian-software/mdtheme.git#cf851a81a5dfb239847841bfff5b24bcc26c0264",
     "sebastian-theme": "git+https://github.com/sebastian-software/sebastian-theme.git#<sebastian-theme-commit>"
   }
 }
