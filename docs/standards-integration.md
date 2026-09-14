@@ -1,21 +1,14 @@
-# Standards README ownership bridge
+# Standards README ownership
 
-The pinned `@sebastian-software/standards@0.10.0` release predates the explicit
-`readme.owner` support. This repository applies a narrow pnpm patch to that
-exact version so its generated README has one owner today.
+This repository uses the released native ownership contract in standards.
+`.repometa.json` declares `readme.owner: "mdtheme"`; authored content lives in
+`README.md.src` and the data-only configuration in `mdtheme.yaml`. Standards
+checks that contract and leaves the generated README alone.
 
-The source change is [standards PR #81](https://github.com/sebastian-software/standards/pull/81),
-commit `30d7215`. The patch contains only its compiled `apply.js`, `check.js`,
-`init.js`, `repo.js`, and new `readme.js`; it does not change reference files,
-managed marker contents, the manifest version, or legacy repository behavior.
-The full upstream gate passed, including 219 tests.
+The old standards 0.10 patch is no longer needed. The dependency and lockfile
+pin the supporting release; both `standards check` and native `readme:check`
+run in CI. `pnpm verify:standards` verifies apply/check/write interoperability
+and incomplete-configuration failures in an isolated native consumer.
 
-`pnpm install --frozen-lockfile` applies the tracked patch and verifies the
-lockfile hash. Both `standards check` and `readme:check` run in this repository's
-CI. The theme repository additionally verifies actual apply/check/write
-interoperability in a scratch consumer.
-
-When a standards release includes PR #81, update the exact dependency pin,
-remove its `patchedDependencies` entry and the corresponding patch file, refresh
-the lockfile, and run the full repository gate. Keep the `readme.owner` opt-in
-and README check scripts. Do not remove the bridge while pinned to 0.10.0.
+The legacy renderer remains a development dependency for factory API and
+installed-package compatibility tests. It does not generate this README.

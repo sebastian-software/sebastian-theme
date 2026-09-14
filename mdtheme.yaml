@@ -1,0 +1,5 @@
+themes:
+  - directory: markdown
+badges:
+  enabled: true
+  published: false

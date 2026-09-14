@@ -2,17 +2,16 @@ import { execFile } from "node:child_process";
 import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 const packageRoot = process.cwd();
-const markdownCli = resolve(packageRoot, "node_modules/.bin/markdown-themer");
+const { stdout: binaryPath } = await execFileAsync("mise", ["which", "mdtheme"], {
+  cwd: packageRoot,
+});
+const markdownCli = binaryPath.trim();
 const standardsCli = resolve(packageRoot, "node_modules/.bin/standards");
-const markdownRuntime = pathToFileURL(
-  resolve(packageRoot, "node_modules/markdown-themer/dist/index.js"),
-).href;
-const themeRuntime = pathToFileURL(resolve(packageRoot, "dist/markdown.js")).href;
+const themePath = resolve(packageRoot, "markdown");
 
 async function run(command, args, { cwd, expectedCodes = [0] }) {
   try {
@@ -56,25 +55,8 @@ async function writeFixture(cwd) {
     "# standards consumer\n\nThe authored source must survive standards apply.\n",
   );
   await writeFile(
-    join(cwd, "markdown-themer.config.mjs"),
-    `import { defineConfig } from ${JSON.stringify(markdownRuntime)};\nimport { sebastianTheme } from ${JSON.stringify(themeRuntime)};\n\nexport default defineConfig({\n  source: "README.md.src",\n  output: "README.md",\n  themes: [sebastianTheme("2026")],\n});\n`,
-  );
-  await writeFile(
-    join(cwd, "package.json"),
-    `${JSON.stringify(
-      {
-        scripts: {
-          "readme:write": "markdown-themer --write",
-          "readme:check": "markdown-themer --check",
-        },
-      },
-      undefined,
-      2,
-    )}\n`,
-  );
-  await writeFile(
-    join(cwd, ".github", "workflows", "ci.yml"),
-    "name: ci\njobs:\n  check:\n    steps:\n      - run: pnpm readme:check\n",
+    join(cwd, "mdtheme.yaml"),
+    `themes:\n  - directory: ${JSON.stringify(themePath)}\n`,
   );
   await writeFile(
     join(cwd, ".repometa.json"),
@@ -84,7 +66,7 @@ async function writeFixture(cwd) {
         visibility: "oss",
         since: 2026,
         platform: "github",
-        readme: { owner: "markdown-themer" },
+        readme: { owner: "mdtheme" },
       },
       undefined,
       2,
@@ -126,7 +108,7 @@ async function verifyValidOwner() {
     await writeFixture(cwd);
     const beforeApply = await snapshot(cwd);
     const applied = await run(standardsCli, ["apply", "--cwd", cwd], { cwd: packageRoot });
-    assert(applied.code === 0, "standards apply failed for a valid markdown-themer owner");
+    assert(applied.code === 0, "standards apply failed for a valid mdtheme owner");
     await assertReadmeUnchanged(cwd, beforeApply, "standards apply");
 
     const checked = await run(standardsCli, ["check", "--cwd", cwd], { cwd: packageRoot });
@@ -134,7 +116,7 @@ async function verifyValidOwner() {
     await assertReadmeUnchanged(cwd, beforeApply, "standards check");
 
     const markdownCheck = await run(markdownCli, ["--check"], { cwd });
-    assert(markdownCheck.code === 0, "markdown-themer check failed after standards apply");
+    assert(markdownCheck.code === 0, "mdtheme check failed after standards apply");
   } finally {
     await rm(cwd, { recursive: true, force: true });
   }
@@ -171,9 +153,6 @@ await verifyInvalidOwnerMutationGuard(async (cwd) => {
   await rm(join(cwd, "README.md.src"));
 }, "missing-source");
 await verifyInvalidOwnerMutationGuard(async (cwd) => {
-  const packagePath = join(cwd, "package.json");
-  const packageJson = JSON.parse(await readFile(packagePath, "utf8"));
-  delete packageJson.scripts["readme:check"];
-  await writeFile(packagePath, `${JSON.stringify(packageJson, undefined, 2)}\n`);
-}, "missing-check-script");
+  await rm(join(cwd, "mdtheme.yaml"));
+}, "missing-native-config");
 console.log("sebastian-theme standards interoperability verification passed");

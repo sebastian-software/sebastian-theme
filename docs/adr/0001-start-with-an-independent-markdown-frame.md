@@ -1,7 +1,7 @@
 # Start with an independent Markdown frame
 
 Status: accepted
-Updated: 2026-09-11
+Updated: 2026-09-14
 
 ## Decision
 
@@ -49,7 +49,7 @@ substitute “AI-assisted” or a market-leadership claim such as “Leaders in�
 The factory accepts only a copyright year or range from trusted project
 configuration. Links and brand content are fixed. There is no options object or
 configuration validation layer. Copyright years are never derived from the system clock.
-Logo artwork remains at its existing canonical URL in `sebastian-brand`; the
+Logo artwork remains owned by `sebastian-brand`; the
 factory does not fetch it during generation. Fonts and logo artwork are not
 redistributed or relicensed by the package.
 
@@ -75,3 +75,37 @@ badges. The footer and Ferramenta composition stay unchanged. Upgrade CLI pins
 before theme pins; earlier releases do not understand badge fragments. Keep the
 legacy JavaScript factory badge in `opening`, since its renderer cannot compose
 badge slots. Test content parity across the two placement contracts.
+
+## Repository adoption
+
+Updated: 2026-09-14
+
+This repository uses native mdtheme to compose its committed root README from
+`README.md.src` and Sebastian-Theme. The project introduction and setup come
+first; the company badge joins the project badges and the logo stays in the
+footer. Existing project badge links remain authored content.
+
+The CLI and theme are independently pinned by the project. CI checks generated
+output without writing it. Contributors regenerate and commit the output;
+pre-push validation never stages or commits. This avoids copied branding and
+keeps consumers independent of Node tooling solely for README generation.
+The tradeoff is a contributor tool installation and Git access during checks.
+
+This is a living decision. Update this record when the ownership or composition
+contract changes; configuration files own exact versions and revisions.
+See [the contributor workflow](../readme-theme.md).
+
+## Public logo hosting
+
+Updated: 2026-09-14
+
+The former `sebastian-brand.vercel.app` deployment is gone. The footer links to
+the logo already published by `oss.sebastian-software.com`, using a raw GitHub
+URL that follows `main` in that public repository. Native fragments and the
+legacy factory use the same URL. Brand files stay outside the theme package.
+
+The logo deliberately follows the latest artwork independently of each
+consumer's CLI and theme pins. Updating the asset on `main` updates the displayed
+logo without regenerating consumer READMEs, subject to the host's image cache.
+Historical READMEs therefore do not freeze the artwork. Keep the public asset
+path stable when changing the logo.

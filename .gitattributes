@@ -1,2 +1,6 @@
 # Keep the native theme identical in every Git checkout.
 /markdown/*.md text eol=lf
+
+# Keep the generated README check identical across Git checkout platforms.
+/README.md text eol=lf
+/README.md.src text eol=lf

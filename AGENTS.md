@@ -9,8 +9,8 @@ in `opening` for compatibility with the old JavaScript renderer.
 
 Use Node 24+, pnpm, TypeScript ESM, and US English. Run `pnpm agent:check` before
 pushing. Edit README.md.src and regenerate README.md with `pnpm readme:write`.
-Brand assets remain owned and hosted by sebastian-brand; do not copy font files
-or relicense the brand identity. Use explicit copyright years, never the clock.
+Brand assets remain owned by sebastian-brand. The README links to the public OSS
+portal’s SVG on `main`; do not copy font files or relicense the brand identity. Use explicit copyright years, never the clock.
 
 Compiled dist is committed for immutable Git consumers until registry releases
 are available. Build and stage dist with source changes; CI detects stale output.
