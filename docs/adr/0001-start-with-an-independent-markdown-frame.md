@@ -49,7 +49,7 @@ substitute “AI-assisted” or a market-leadership claim such as “Leaders in�
 The factory accepts only a copyright year or range from trusted project
 configuration. Links and brand content are fixed. There is no options object or
 configuration validation layer. Copyright years are never derived from the system clock.
-Logo artwork remains at its existing canonical URL in `sebastian-brand`; the
+Logo artwork remains owned by `sebastian-brand`; the
 factory does not fetch it during generation. Fonts and logo artwork are not
 redistributed or relicensed by the package.
 
@@ -94,3 +94,12 @@ The tradeoff is a contributor tool installation and Git access during checks.
 This is a living decision. Update this record when the ownership or composition
 contract changes; configuration files own exact versions and revisions.
 See [the contributor workflow](../readme-theme.md).
+
+## Public logo hosting
+
+The former `sebastian-brand.vercel.app` deployment is gone. The footer links to
+the logo already published by `oss.sebastian-software.com`, using a commit-pinned
+raw GitHub URL from that public repository. This keeps the logo publicly
+accessible without copying brand files into the theme or exposing a private
+repository. Native fragments and the legacy factory use the same URL. Update
+the asset revision deliberately when the public portal adopts new artwork.

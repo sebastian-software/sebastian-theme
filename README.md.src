@@ -50,7 +50,7 @@ shared content. Run `pnpm readme:write` after changing this README's source and
 and the local `markdown/` theme files. Tests retain coverage of the earlier
 JavaScript factory for existing consumers.
 
-Brand assets remain hosted by sebastian-brand. The code is MIT licensed;
+The footer links to the public OSS portal’s versioned logo asset. The code is MIT licensed;
 [brand ownership](NOTICE.md) remains with Sebastian Software.
 
 ## Maintaining this README
