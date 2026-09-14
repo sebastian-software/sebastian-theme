@@ -58,12 +58,12 @@
     "agent:check": "pnpm lint && pnpm format:check && pnpm typecheck && pnpm build && pnpm check:dist && pnpm test && pnpm readme:check && pnpm verify:package && pnpm standards:check && pnpm verify:standards",
     "prepack": "pnpm build",
     "check:dist": "git diff --exit-code -- dist",
-    "readme:write": "markdown-themer --write",
-    "readme:check": "markdown-themer --check",
+    "readme:write": "mise run readme:write",
+    "readme:check": "mise run readme:check",
     "verify:standards": "node scripts/verify-standards.mjs"
   },
   "devDependencies": {
-    "@sebastian-software/standards": "0.10.0",
+    "@sebastian-software/standards": "0.11.1",
     "@types/node": "24.12.4",
     "eslint": "10.4.0",
     "eslint-config-setup": "0.4.0",

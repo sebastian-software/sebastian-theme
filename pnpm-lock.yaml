@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@sebastian-software/standards@0.10.0': 286f483e1d161e5cdd1e2bfbf693f9c2648d5ee9c5dbb8f10a94efab23467d87
-
 importers:
 
   .:
     devDependencies:
       '@sebastian-software/standards':
-        specifier: 0.10.0
-        version: 0.10.0(patch_hash=286f483e1d161e5cdd1e2bfbf693f9c2648d5ee9c5dbb8f10a94efab23467d87)
+        specifier: 0.11.1
+        version: 0.11.1
       '@types/node':
         specifier: 24.12.4
         version: 24.12.4
@@ -779,8 +776,8 @@ packages:
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  '@sebastian-software/standards@0.10.0':
-    resolution: {integrity: sha512-7b79pfy7oMkIpQAWYZENzi7yJP4VOI6vIgairtx0L0YJ99lbOFI2P94TPeBUSUFwjZvF39yIWmUeORZDrNdmVw==}
+  '@sebastian-software/standards@0.11.1':
+    resolution: {integrity: sha512-3WECKOYgD7bZ7fmePTjl4Lqxo4OasvCb9utGxMUVG1czMmXCMvagXgLcfFTWczKMeFkDL2Y7k4w99NKU/i9h3A==}
     engines: {node: '>=24.0.0'}
     hasBin: true
 
@@ -3644,7 +3641,7 @@ snapshots:
 
   '@pkgr/core@0.3.6': {}
 
-  '@sebastian-software/standards@0.10.0(patch_hash=286f483e1d161e5cdd1e2bfbf693f9c2648d5ee9c5dbb8f10a94efab23467d87)': {}
+  '@sebastian-software/standards@0.11.1': {}
 
   '@sindresorhus/base62@1.0.0': {}
 

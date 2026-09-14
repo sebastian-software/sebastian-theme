@@ -18,6 +18,12 @@ jobs:
           node-version: 24
           cache: pnpm
 
+      # README checks use this repository's native CLI pin.
+      - uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # v3
+        with:
+          version: 2026.9.5
+          install_args: --locked
+
       - run: pnpm install --frozen-lockfile
 
       - name: "Guard: agent step not yet completed for this PR"
@@ -76,7 +82,7 @@ jobs:
 
       - run: pnpm run --if-present test
 
-      # README belongs to markdown-themer through the explicit standards opt-in.
+      # README belongs to mdtheme through the explicit standards opt-in.
       - run: pnpm readme:check
 
       # This package must work after installation, not just from workspace sources.

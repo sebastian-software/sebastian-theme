@@ -112,12 +112,13 @@ separate export with its own contract; consumers should use only the documented
 ## Dogfood this repository
 
 This repository keeps its corpus in `README.md.src` and its generated output in
-`README.md`. Run `pnpm install --frozen-lockfile`, `pnpm build`, and then
+`README.md`. Follow [README tool setup](readme-theme.md), then run
+`pnpm install --frozen-lockfile`, `pnpm build`, and
 `pnpm readme:write` from the repository root. Review the generated diff and run
 `pnpm readme:check` in CI. The source remains the editable document.
 
 ## Standards integration
 
 For repositories managed by standards, use the explicit README ownership opt-in
-and the [versioned integration bridge](standards-integration.md) until the
-supporting standards release is available. Both generators' checks run in CI.
+with a [supporting standards release](standards-integration.md). Both
+README generation and standards ownership checks run in CI.
