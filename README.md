@@ -51,7 +51,7 @@ shared content. Run `pnpm readme:write` after changing this README's source and
 and the local `markdown/` theme files. Tests retain coverage of the earlier
 JavaScript factory for existing consumers.
 
-The footer links to the public OSS portal’s versioned logo asset. The code is MIT licensed;
+The footer links to the public OSS portal’s logo asset on `main`. The code is MIT licensed;
 [brand ownership](NOTICE.md) remains with Sebastian Software.
 
 ## Maintaining this README
@@ -62,7 +62,7 @@ See [README setup and checks](docs/readme-theme.md) for the contributor workflow
 ---
 
 <p align="center">
-  <a href="https://oss.sebastian-software.com"><img src="https://raw.githubusercontent.com/sebastian-software/oss.sebastian-software.com/cb0d07bc91d703c16d7a5c27d6c76109eef06bff/app/assets/logo-software.svg" alt="Sebastian Software" width="160" /></a><br />
+  <a href="https://oss.sebastian-software.com"><img src="https://raw.githubusercontent.com/sebastian-software/oss.sebastian-software.com/main/app/assets/logo-software.svg" alt="Sebastian Software" width="160" /></a><br />
   TypeScript, React &amp; Rust consulting<br />
   Experts in Agentic Software Development<br />
   <a href="https://sebastian-software.de">Work with us</a> · <a href="https://oss.sebastian-software.com">More open source</a>

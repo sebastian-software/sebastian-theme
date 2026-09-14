@@ -97,9 +97,15 @@ See [the contributor workflow](../readme-theme.md).
 
 ## Public logo hosting
 
+Updated: 2026-09-14
+
 The former `sebastian-brand.vercel.app` deployment is gone. The footer links to
-the logo already published by `oss.sebastian-software.com`, using a commit-pinned
-raw GitHub URL from that public repository. This keeps the logo publicly
-accessible without copying brand files into the theme or exposing a private
-repository. Native fragments and the legacy factory use the same URL. Update
-the asset revision deliberately when the public portal adopts new artwork.
+the logo already published by `oss.sebastian-software.com`, using a raw GitHub
+URL that follows `main` in that public repository. Native fragments and the
+legacy factory use the same URL. Brand files stay outside the theme package.
+
+The logo deliberately follows the latest artwork independently of each
+consumer's CLI and theme pins. Updating the asset on `main` updates the displayed
+logo without regenerating consumer READMEs, subject to the host's image cache.
+Historical READMEs therefore do not freeze the artwork. Keep the public asset
+path stable when changing the logo.
