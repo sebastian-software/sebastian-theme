@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "blocking": false,
+  "reason": "The automation environment could not complete the repository gate because the local mise executable is unavailable.",
+  "detectedAt": "2026-10-01T08:48:48.000Z",
+  "expectedStandardsVersion": 15,
+  "observedStandardsVersion": 15,
+  "expectedCliVersion": "0.13.0",
+  "observedCliVersion": "0.13.0",
+  "failedChecks": [
+    "pnpm agent:check"
+  ],
+  "retry": "Run the repository gate in an environment with mise available, then remove this marker if the gate passes."
+}
