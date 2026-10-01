@@ -6,7 +6,8 @@ on:
     branches: [main]
 
 jobs:
-  check:
+  ci:
+    name: CI / Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,17 +27,57 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - run: pnpm run --if-present lint
+
+      - run: pnpm run --if-present format:check
+
+      - run: pnpm run --if-present typecheck
+
+      - run: pnpm run --if-present build
+
+      # Immutable Git consumers use the committed build.
+      - run: pnpm check:dist
+
+      - run: pnpm run --if-present test
+
+      # README belongs to mdtheme through the explicit standards opt-in.
+      - run: pnpm readme:check
+
+      # This package must work after installation, not just from workspace sources.
+      - run: pnpm verify:package
+
+      # Exercise both writers against one generated README in a scratch repository.
+      - run: pnpm verify:standards
+
+  standards:
+    name: Standards / Consistency
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
       - name: "Guard: agent step not yet completed for this PR"
         run: test ! -f .standards/pending.json
 
       # `.standards/blocked.json` records an agent run that pushed a result it
-      # could not validate. `blocking: true` is the CLI/stamp alignment class:
-      # every verdict of that run was computed against the wrong manifest, so
-      # the pull request must not merge. A non-blocking marker is context for
-      # the reviewer — the failures it lists are reported by this workflow's own
-      # lanes. The marker is parsed rather than matched line by line: JSON may
-      # put `"blocking":` and `true` on separate lines, and a guard whose whole
-      # purpose is to fail closed must fail on a marker it cannot read at all.
+      # could not validate. `blocking: true` is the alignment class, with two
+      # members: the pinned CLI does not ship the stamped manifest version, or
+      # the pin is not an exact version literal. Either way `standards check`
+      # exits 3 and the pull request must not merge (only the stamp member also
+      # makes `apply` and `sync` refuse to write). A non-blocking marker is
+      # context for the reviewer — the failures it lists are reported by this
+      # workflow's own lanes. The marker is parsed rather than matched line by
+      # line: JSON may put `"blocking":` and `true` on separate lines, and a guard
+      # whose whole purpose is to fail closed must fail on a marker it cannot
+      # read at all.
       # `node` rather than `jq`, which the Forgejo node image may lack; the
       # schema is `BlockedState` in @sebastian-software/standards.
       - name: "Guard: no blocking agent findings for this PR"
@@ -68,28 +109,6 @@ jobs:
           if (state.blocking) { fail('the agent could not validate its result.'); }
           console.log('The agent marker is non-blocking; its findings are reviewer context.');
           "
-
-      - run: pnpm run --if-present lint
-
-      - run: pnpm run --if-present format:check
-
-      - run: pnpm run --if-present typecheck
-
-      - run: pnpm run --if-present build
-
-      # Immutable Git consumers use the committed build.
-      - run: pnpm check:dist
-
-      - run: pnpm run --if-present test
-
-      # README belongs to mdtheme through the explicit standards opt-in.
-      - run: pnpm readme:check
-
-      # This package must work after installation, not just from workspace sources.
-      - run: pnpm verify:package
-
-      # Exercise both writers against one generated README in a scratch repository.
-      - run: pnpm verify:standards
 
       # The pinned CLI has to ship the manifest version this repository is
       # stamped at. Below the stamp, every `standards check` verdict is computed
@@ -151,3 +170,20 @@ jobs:
       # not reviewed in a pull request. Renovate's `:standards` preset bumps the
       # pin; the drift it then reports is applied in that same pull request.
       - run: pnpm exec standards check
+
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    needs: [ci, standards]
+    if: ${{ always() }}
+    steps:
+      - name: Preserve existing required check
+        run: |
+          if [ "${{ needs.ci.result }}" != "success" ]; then
+            echo "CI / Check finished with ${{ needs.ci.result }}"
+            exit 1
+          fi
+          if [ "${{ needs.standards.result }}" != "success" ]; then
+            echo "Standards / Consistency finished with ${{ needs.standards.result }}"
+            exit 1
+          fi
