@@ -116,9 +116,3 @@ This repository keeps its corpus in `README.md.src` and its generated output in
 `pnpm install --frozen-lockfile`, `pnpm build`, and
 `pnpm readme:write` from the repository root. Review the generated diff and run
 `pnpm readme:check` in CI. The source remains the editable document.
-
-## Standards integration
-
-For repositories managed by standards, use the explicit README ownership opt-in
-with a [supporting standards release](standards-integration.md). Both
-README generation and standards ownership checks run in CI.

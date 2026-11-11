@@ -1,7 +1,7 @@
 # Start with an independent Markdown frame
 
 Status: accepted
-Updated: 2026-09-14
+Updated: 2026-11-11
 
 ## Decision
 
@@ -65,9 +65,10 @@ commits compiled `dist/`, advertises its compiled `main`, and checks for stale
 build output in CI. It has no `prepare` lifecycle. A packed consumer verifies
 the public API and its composition with the actual Markdown tool.
 
-The repository generates its own README from `README.md.src`. Standards has an
-explicit ownership opt-in and continues to govern all its other files. The
-README generation and standards checks both run in CI.
+The repository generates its own README from `README.md.src`; `readme:check`
+runs in CI. Until 2026-11-11 the README was an explicit ownership opt-in under
+the retired `sebastian-software/standards` CLI, which also governed the other
+repository files and ran its own check in CI.
 
 Native consumers require mdtheme 0.4.0 or newer. Put company attribution in
 `badges-prepend.md`, allowing project badge slots to place it beside their own
